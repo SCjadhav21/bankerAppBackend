@@ -48,6 +48,7 @@ UserRoutes.post("/login", async (req, res) => {
             msg: "Login Successfull",
             name: user.name,
             token: token,
+            userType: user.userType,
           });
         } else {
           res.status(200).send("Wrong Credntials");
