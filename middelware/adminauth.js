@@ -11,7 +11,7 @@ const AdminAuthentication = async (req, res, next) => {
     } else {
       const users = await UserModel.findOne({ _id: result.userId });
 
-      if (users.email == process.env.adminEmail) {
+      if (users.userType == process.env.key) {
         req.body.userId = result.userId;
         next();
       } else {

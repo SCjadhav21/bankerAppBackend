@@ -7,7 +7,7 @@ const { AdminAuthentication } = require("../middelware/adminauth");
 const UserRoutes = express.Router();
 
 UserRoutes.post("/register", async (req, res) => {
-  let { name, email, password } = req.body;
+  let { name, email, password, userType } = req.body;
   try {
     const users = await UserModel.find({ email });
     if (users.length > 0) {
@@ -20,6 +20,7 @@ UserRoutes.post("/register", async (req, res) => {
           const user = new UserModel({
             name,
             email,
+            userType,
             password: hash,
           });
           await user.save();
